@@ -16,12 +16,12 @@ import static org.hamcrest.Matchers.everyItem;
 import static org.hamcrest.Matchers.greaterThan;
 import static org.hamcrest.Matchers.instanceOf;
 
-@DisplayName("Imagens por raca")
+@DisplayName("Imagens por raça")
 public class BreedImagesTest extends BaseTest {
 
     @ParameterizedTest
     @MethodSource("com.dogapi.utils.DataProvider#validBreeds")
-    @DisplayName("Lista imagens por raca retorna 200")
+    @DisplayName("Lista imagens por raça retorna 200")
     void listImagesReturnsOkForValidBreed(String breed) {
         given()
             .pathParam("breed", breed)
@@ -34,7 +34,7 @@ public class BreedImagesTest extends BaseTest {
 
     @ParameterizedTest
     @MethodSource("com.dogapi.utils.DataProvider#validBreeds")
-    @DisplayName("Lista imagens por raca valida schema")
+    @DisplayName("Lista imagens por raça valida schema")
     void listImagesSchemaIsValid(String breed) {
         given()
             .pathParam("breed", breed)
@@ -48,7 +48,7 @@ public class BreedImagesTest extends BaseTest {
 
     @ParameterizedTest
     @MethodSource("com.dogapi.utils.DataProvider#validBreeds")
-    @DisplayName("Lista imagens por raca contem o nome")
+    @DisplayName("Lista imagens por raça contém o nome")
     void listImagesContainBreedName(String breed) {
         given()
             .pathParam("breed", breed)
@@ -64,7 +64,7 @@ public class BreedImagesTest extends BaseTest {
 
     @ParameterizedTest
     @MethodSource("com.dogapi.utils.DataProvider#invalidBreeds")
-    @DisplayName("Lista imagens por raca invalida retorna 404")
+    @DisplayName("Lista imagens por raça inválida retorna 404")
     void listImagesReturnsNotFoundForInvalidBreed(String breed) {
         given()
             .pathParam("breed", breed)

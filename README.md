@@ -4,13 +4,26 @@ Automação de testes de API para a [Dog API](https://dog.ceo/dog-api/documentat
 
 O objetivo aqui não foi criar uma suíte enorme. A ideia foi validar os pontos que realmente importam para o consumo da aplicação: listar raças, buscar imagens por raça e checar a imagem aleatória.
 
+
+# Diagrama da pipeline
+
+Isso ajuda a mostrar que a suíte não depende só da sua máquina local e que a avaliação pode ser feita com rastreabilidade.
+
+![Fluxo de execução da pipeline no GitHub Actions](docs/diagrams/pipeline-github-actions-flow.gif)
+
+## Relatório público (GitHub Pages)
+
+**Acesse o relatório público no GitHub Pages.**
+
+- https://leandro-rodini.github.io/dog-api-qa-test/
+
 ## O que este projeto cobre
 
 - `GET /breeds/list/all`
 - `GET /breed/{breed}/images`
 - `GET /breeds/image/random`
 
-Os testes validam status code, estrutura da resposta, conteúdo básico e alguns comportamentos esperados da API.
+Os testes validam código de status, estrutura da resposta, conteúdo básico e alguns comportamentos esperados da API.
 
 ## Por que montei assim
 
@@ -63,11 +76,11 @@ dog-api-qa-test/
 
 A estratégia foi simples de propósito:
 
-- validar o caminho feliz dos endpoints;
-- validar um erro esperado em caso de raça inválida;
-- validar formato e conteúdo básico da resposta;
-- validar uma resposta aleatória sem acoplar o teste a um valor fixo;
-- manter a suíte rápida para rodar em PR e pipeline.
+- Validar o caminho feliz dos endpoints;
+- Validar um erro esperado em caso de raça inválida;
+- Validar formato e conteúdo básico da resposta;
+- Validar uma resposta aleatória sem acoplar o teste a um valor fixo;
+- Manter a suíte rápida para rodar em PR e pipeline.
 
 ## Configuração da base URL
 
@@ -75,9 +88,9 @@ A URL base pode ser sobrescrita sem mexer no código.
 
 Prioridade usada pela suíte:
 
-1. propriedade JVM `dog.api.base-url`
-2. variável de ambiente `DOG_API_BASE_URL`
-3. valor padrão `https://dog.ceo/api`
+1. Propriedade JVM `dog.api.base-url`
+2. Variável de ambiente `DOG_API_BASE_URL`
+3. Valor padrão `https://dog.ceo/api`
 
 Exemplo com Maven:
 
@@ -130,21 +143,11 @@ O workflow está em [.github/workflows/pipeline.yml](.github/workflows/pipeline.
 
 Ele faz o básico que interessa em uma entrega de QA:
 
-- roda em `push` e `pull_request`;
-- sobe Java 17;
-- executa a suíte;
-- gera o relatório Allure;
-- publica os artefatos da execução.
-
-URL pública do relatório (GitHub Pages):
-
-- https://leandro-rodini.github.io/dog-api-qa-test/
-
-### Diagrama da pipeline
-
-Isso ajuda a mostrar que a suíte não depende só da sua máquina local e que a avaliação pode ser feita com rastreabilidade.
-
-![Fluxo de execução da pipeline no GitHub Actions](docs/diagrams/pipeline-github-actions-flow.gif)
+- Roda em `push` e `pull_request`;
+- Sobe Java 17;
+- Executa a suíte;
+- Gera o relatório Allure;
+- Publica os artefatos da execução.
 
 ## Observações práticas
 
@@ -156,8 +159,8 @@ Isso ajuda a mostrar que a suíte não depende só da sua máquina local e que a
 
 Se isso fosse para produção, eu seguiria por este caminho:
 
-1. deixar a base URL configurável por ambiente de forma centralizada;
-2. adicionar contrato com schema mais forte;
-3. publicar o Allure em um ponto fixo;
-4. separar smoke de regressão;
-5. incluir métricas de execução no pipeline.
+1. Deixar a base URL configurável por ambiente de forma centralizada;
+2. Adicionar contrato com schema mais forte;
+3. Publicar o Allure em um ponto fixo;
+4. Separar smoke de regressão;
+5. Incluir métricas de execução no pipeline.

@@ -12,11 +12,11 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.matchesPattern;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-@DisplayName("Imagem aleatoria")
+@DisplayName("Imagem aleatória")
 public class RandomImageTest extends BaseTest {
 
     @Test
-    @DisplayName("Imagem aleatoria retorna 200")
+    @DisplayName("Imagem aleatória retorna 200")
     void randomImageReturnsOk() {
         given()
         .when()
@@ -27,7 +27,7 @@ public class RandomImageTest extends BaseTest {
     }
 
     @Test
-    @DisplayName("Imagem aleatoria retorna URL valida")
+    @DisplayName("Imagem aleatória retorna URL válida")
     void randomImageUrlIsValid() {
         given()
         .when()
@@ -38,7 +38,7 @@ public class RandomImageTest extends BaseTest {
     }
 
     @Test
-    @DisplayName("Imagem aleatoria muda entre requisicoes")
+    @DisplayName("Imagem aleatória muda entre requisições")
     void randomImageChangesAcrossRequests() {
         Set<String> images = new HashSet<>();
 
@@ -54,6 +54,6 @@ public class RandomImageTest extends BaseTest {
             images.add(imageUrl);
         }
 
-        assertTrue(images.size() > 1, "Esperava imagens diferentes em requisicoes sequenciais");
+        assertTrue(images.size() > 1, "Esperava imagens diferentes em requisições sequenciais");
     }
 }
